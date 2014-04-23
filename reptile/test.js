@@ -5,7 +5,8 @@ var $;
 myUtil.get(url,function(content,status){
   console.log("status:="+status);
   $ = cheerio.load(content);
-  $('ol > li > p > img').each(function(i, elem) {
-	console.log($(this).attr("src"));
+  $('ol > li > p > img').each(function(i) {
+    console.log($(this).attr("src"));
+    myUtil.saveImage($(this).attr("src"), i)
   });
 });
