@@ -9,7 +9,7 @@ MyUtil.prototype.get=function(url,callback){
     }
   });
 }
-MyUtil.prototype.saveImage=function(url, i){
+MyUtil.prototype.saveImage=function(url, i, folder){
   var hostName = url.split('/')[2];
   var path = url.substring(url.indexOf(hostName) + hostName.length);
   var options = {
@@ -26,7 +26,7 @@ MyUtil.prototype.saveImage=function(url, i){
           var fileType = res.headers["content-type"];
           var buffer = new Buffer(imageData, "Binary");
           var fileTypeArray = fileType.split("/");
-          fs.writeFile(i + "." + fileTypeArray[1], buffer);
+          fs.writeFile(folder + "\\" + i + "." + fileTypeArray[1], buffer);
         });
   });
 }
