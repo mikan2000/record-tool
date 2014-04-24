@@ -2,10 +2,10 @@ var MyUtil = function () {};
 var http = require('http'),
     fs = require('fs'),
     request = require('request');
-MyUtil.prototype.get=function(url,callback){
+MyUtil.prototype.get=function(url, folder, callback){
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      callback(body,response.statusCode);
+      callback(body, response.statusCode, folder);
     }
   });
 }
@@ -27,6 +27,7 @@ MyUtil.prototype.saveImage=function(url, i, folder){
           var buffer = new Buffer(imageData, "Binary");
           var fileTypeArray = fileType.split("/");
           fs.writeFile(folder + "\\" + i + "." + fileTypeArray[1], buffer);
+          console.log(folder + "\\" + i + "." + fileTypeArray[1]);
         });
   });
 }
